@@ -1,23 +1,8 @@
-#   Copyright 2019 - 2020 DarkPrinc3
-
-#   Licensed under the Apache License, Version 2.0 (the "License");
-#   you may not use this file except in compliance with the License.
-#   You may obtain a copy of the License at
-
-#       http://www.apache.org/licenses/LICENSE-2.0
-
-#   Unless required by applicable law or agreed to in writing, software
-#   distributed under the License is distributed on an "AS IS" BASIS,
-#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
-
 # if you change credits, you get anal cancer and get murdered by russians in 3 days.
 """
 Support chatbox for pmpermit.
 Used by incoming messages with trigger as /start
 Will not work for already approved people.
-Credits: written by ༺αиυвιѕ༻ {@A_Dark_Princ3}
 """
 import asyncio
 import io 
@@ -25,11 +10,11 @@ import telethon.sync
 from telethon.tl.functions.users import GetFullUserRequest
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon import events, errors, functions, types
-from userbot import ALIVE_NAME, LESS_SPAMMY
+from userbot import ALIVE_NAME
 from userbot.utils import admin_cmd
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "No name set yet nibba, check pinned message in @XtraTgBot"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Set ALIVE_NAME in heroku vars"
 PREV_REPLY_MESSAGE = {}
 
 
@@ -42,7 +27,7 @@ async def _(event):
         if event.fwd_from:
             return
         if event.is_private:
-        
+         
          PM = ("`مرحباً.  لقد تم ايصالك إلى القائمة المتاحة للسيد ѕᴀѕᴋᴇ ʟ̤ɾʅ丂ɹɹɹȊɹɹɹ ,`"
                f"{DEFAULTUSER}.\n"
                "__دعونا نجعل هذا سلسًا وأخبرني لماذا أنت هنا ಠ_ಠ__\n"
@@ -52,7 +37,7 @@ async def _(event):
 
                "`3`. للاستفسار عن شيء ما (⌐■_■)\n"
                "`4`. لطلب شيء 🎭\n")
-          ONE = ("__حسناً. تم تسجيل طلبك. لا ترسل المزيد من الرسائل المزعجه إلى أستاذي. يمكنك توقع الرد في غضون 24 سنة ضوئية. إنه رجل مشغول ، على عكسك على الأرجح(¬‿¬) .__\n\n"
+         ONE = ("__حسناً. تم تسجيل طلبك. لا ترسل المزيد من الرسائل المزعجه إلى أستاذي. يمكنك توقع الرد في غضون 24 سنة ضوئية. إنه رجل مشغول ، على عكسك على الأرجح(¬‿¬) .__\n\n"
                 "**⚠️ سيتم حظرك والإبلاغ عنك إذا قمت بإرسال رسائل غير مرغوب فيها. ⚠️**\n\n")
          TWO = (" `███████▄▄███████████▄  \n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓█░░░░░░░░░░░░░░█\n▓▓▓▓▓▓███░░░░░░░░░░░░█\n██████▀▀▀█░░░░██████▀  \n░░░░░░░░░█░░░░█  \n░░░░░░░░░░█░░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░█░░█  \n░░░░░░░░░░░░▀▀ `\n\n**رائع جداً 🌝🌿، هذا ليس منزلك. اذهب لازعاج شخص آخر. لقد تم حظرك والإبلاغ عنك حتى إشعار آخر 🎭**")
          FOUR = ("__حسناً. لم يطلع سيدي على رسالتك حتى الآن ، وعادةً ما يرد على الأشخاص ، على الرغم من ذلك ساقوم بايصال رسالتك لسيدي🌿 .__\n __سيرد عندما يعود إذا أراد ذلك ، فهناك بالفعل الكثير من الرسائل المعلقة😶__\n **من فضلك لا ترسل شيٌ أخر إلا إذا كنت ترغب في أن يتم حظره والإبلاغ عنك (●'◡'●).**")
@@ -122,5 +107,4 @@ async def _(event):
                      await borg.send_message(chat, TWO)
                      await asyncio.sleep(3)
                      await event.client(functions.contacts.BlockRequest(chat_id))
-
 
